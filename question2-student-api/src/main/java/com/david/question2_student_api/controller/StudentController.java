@@ -16,13 +16,12 @@ public class StudentController {
 
     private final List<Student> students = new ArrayList<>();
 
-    // Constructor to add sample data for testing
     public StudentController() {
-        students.add(new Student(1L, "Alice", "Smith", "alice@example.com", "Computer Science", 3.8));
-        students.add(new Student(2L, "Bob", "Jones", "bob@example.com", "Mathematics", 3.2));
-        students.add(new Student(3L, "Charlie", "Brown", "charlie@example.com", "Computer Science", 3.5));
-        students.add(new Student(4L, "David", "Williams", "david@example.com", "Physics", 2.9));
-        students.add(new Student(5L, "Eva", "Miller", "eva@example.com", "Engineering", 3.9));
+        students.add(new Student(1L, "Alice", "Smith", "alice@student.com", "Computer Science", 3.8));
+        students.add(new Student(2L, "Bob", "Jones", "bob@student.com", "Mathematics", 3.2));
+        students.add(new Student(3L, "Charlie", "Brown", "charlie@student.com", "Computer Science", 3.5));
+        students.add(new Student(4L, "David", "Williams", "david@student.com", "Physics", 2.9));
+        students.add(new Student(5L, "Eva", "Miller", "eva@student.com", "Engineering", 3.9));
     }
 
     @GetMapping
@@ -55,7 +54,6 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<Student> registerStudent(@RequestBody Student student) {
-        // Simple ID generation strategy for demonstration
         long nextId = students.stream().mapToLong(Student::getStudentId).max().orElse(0) + 1;
         student.setStudentId(nextId);
         students.add(student);
